@@ -9,7 +9,7 @@
 	<select ng-model="form._tagged" ng-options="user._id as user.name for user in userList"></select>
 	<input type="submit" value="Add to List">
 </form>
-<p ng-repeat="error in errors"></p>
+<p ng-repeat="error in errors">{{ error }}</p>
 
 <h3>Before I die I want to:</h3>
 <p ng-repeat="item in bucketList | filter:dC.filter">
