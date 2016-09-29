@@ -5,5 +5,19 @@
 <h1>Welcome, {{ user.name }}!</h1>
 <label>Title: <input type="text" ng-model="form.title"></label>
 <label>Description: <input type="text" ng-model="form.description"></label>
-<select ng-options="user.name as user in userList"></select>
+<select ng-model="form._tagged" ng-options="user.name as user._id in userList"></select>
+<button ng-click="dC.create()"></button>
+<p ng-repeat="error in errors"></p>
 
+<h3>Before I die I want to:</h3>
+<p ng-repeat="item in bucketList | filter:dC.filter">
+	<input type="checkbox" ng-checked="item.complete" ng-click="dC.update(item._id, !item.complete)">
+	{{ item._creator.name }} | {{ item.title }} -- {{ item.description }} ({{ item.createdAt | date:'mediumDate' }})
+</p>
+
+<h3>List of other users (Click to view profile)</h3>
+<ul>
+	<li ng-repeat="other in userList | filter:{_id: !user._id}">
+		<a href="#/user/{{ other._id }}">{{ other.name }}</a>
+	</li>
+</ul>

@@ -6,7 +6,7 @@ app.controller('loginController', function($scope, $location, userFactory){
 		userFactory.login($scope.name, function(data){
 			if (data.errors){
 				for (key in data.errors){
-					$scope.errors.append(data.errors[key].message);
+					$scope.errors.push(data.errors[key].message);
 				}
 			} else {
 				$location.url('/dashboard');

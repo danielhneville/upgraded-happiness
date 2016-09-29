@@ -15,7 +15,7 @@ UserController.prototype.index = function(req, res) {
 	})
 };
 
-UserController.prototype.create = function(req, res) {
+UserController.prototype.login = function(req, res) {
 	User.findOne({name: req.body.name}, function(err, result){
 		if (err) {
 			console.log(err);

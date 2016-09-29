@@ -23,5 +23,22 @@ BucketController.prototype.create = function(req, res) {
 		_tagged: req.body._tagged;
 	})
 };
+BucketController.prototype.update = function(req, res) {
+	// Check for identity
+	if (req.params.userid != req.body.ownerid){
+		res.json({errors: {check: {message: 'You can\'t check of other user\'s items'}}})
+		return null;
+	}
+	// Update checkbox
+	Bucket.findOneAndUpdate({_id: req.body.bucketid}, {complete: req.body.complete}, {runValidators: true}, function(err, doc){
+		if (err) {
+			console.log(err);
+			res.json(err);
+		} else {
+			console.log(doc);
+			res.json(doc);
+		}
+	})
+};
 
 module.exports = new BucketController();
