@@ -28,10 +28,18 @@ app.controller('userController', function($scope, $location, $routeParams, userF
 	})
 
 	this.done = function(item){
-		return ( ( ( item._creator._id == $scope.profile._id ) || ( item._tagged._id == $scope.profile._id ) ) && ( item.complete ) )
+		if (item._tagged){
+			return ( ( ( item._creator._id == $scope.profile._id ) || ( item._tagged._id == $scope.profile._id ) ) && ( item.complete ) )
+		} else {
+			return ( ( item._creator._id == $scope.profile._id ) && ( item.complete ) )
+		}
 	}
 	this.pending = function(item){
-		return ( ( ( item._creator._id == $scope.profile._id ) || ( item._tagged._id == $scope.profile._id ) ) && ( !item.complete ) )
+		if (item._tagged){
+			return ( ( ( item._creator._id == $scope.profile._id ) || ( item._tagged._id == $scope.profile._id ) ) && ( !item.complete ) )
+		} else {
+			return ( ( item._creator._id == $scope.profile._id ) && ( !item.complete ) )
+		}
 	}
 
 	$scope.home = function(){

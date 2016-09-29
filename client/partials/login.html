@@ -1,5 +1,7 @@
 <h1>Bucket Lists</h1>
 
-<label>Name: <input type="text" ng-model="name" placeholder="username"></label>
-<button ng-click="lC.login()">Enter</button>
+<form ng-submit="lC.login()">
+	<label>Name: <input type="text" ng-model="name" placeholder="username"></label>
+	<input type="submit" value="Enter">
+</form>
 <p ng-repeat="error in errors">{{ error }}</p>

@@ -13,7 +13,7 @@ var bucketSchema = new mongoose.Schema({
 	},
 	complete: {
 		type: Boolean
-	}
+	},
 	_creator: {
 		type: String,
 		ref: 'User',

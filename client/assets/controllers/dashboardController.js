@@ -5,6 +5,9 @@ app.controller('dashboardController', function($scope, $location, userFactory, b
 			$location.url('/index');
 		} else {
 			$scope.user = user;
+			$scope.form = {
+				_creator: $scope.user._id
+			}
 		}
 	})
 
@@ -18,10 +21,6 @@ app.controller('dashboardController', function($scope, $location, userFactory, b
 			$scope.userList = userList;
 		}
 	})
-
-	$scope.form = {
-		_creator: $scope.user._id
-	}
 	
 	bucketFactory.index(false, function(bucketList){
 		if (bucketList.errors){
@@ -34,7 +33,7 @@ app.controller('dashboardController', function($scope, $location, userFactory, b
 		}
 	})
 
-	this.create(){
+	this.create = function(){
 		$scope.errors = [];
 		console.log($scope.form);
 		bucketFactory.create($scope.form, function(data){
@@ -50,7 +49,7 @@ app.controller('dashboardController', function($scope, $location, userFactory, b
 		})
 	}
 
-	this.update(itemID, complete){
+	this.update = function(itemID, complete){
 		$scope.errors = [];
 		bucketFactory.update(itemID, complete, function(data){
 			if (data.errors){
@@ -66,7 +65,14 @@ app.controller('dashboardController', function($scope, $location, userFactory, b
 	}
 
 	this.filter = function(item){
-		return ((item._creator._id == $scope.user._id) || (item._tagged._id == $scope.user._id))
+		if (item._tagged){
+			return ((item._creator._id == $scope.user._id) || (item._tagged._id == $scope.user._id));
+		} else {
+			return (item._creator._id == $scope.user._id);
+		}
+	}
+	this.notUser = function(other){
+		return (other._id != $scope.user._id);
 	}
 
 	$scope.home = function(){

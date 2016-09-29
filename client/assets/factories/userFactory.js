@@ -1,12 +1,13 @@
 app.factory('userFactory', function($http){
-	var userList = [],
-		user = null;
+	var userList = [];
+	var user = null;
 
 	function UserFactory(){};
 
 	UserFactory.prototype.login = function(name, cb) {
 		$http.post('/users', {name: name})
 			.then(function(result){
+				user = result.data;
 				cb(result.data);
 			})
 	};
