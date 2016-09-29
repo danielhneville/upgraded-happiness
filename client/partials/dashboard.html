@@ -1,0 +1,9 @@
+<h2>Bucket List</h2>
+<button ng-click="home()">Home</button>
+<button ng-click="logout()">Logout</button>
+
+<h1>Welcome, {{ user.name }}!</h1>
+<label>Title: <input type="text" ng-model="form.title"></label>
+<label>Description: <input type="text" ng-model="form.description"></label>
+<select ng-options="user.name as user in userList"></select>
+
