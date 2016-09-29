@@ -7,6 +7,6 @@ module.exports = function(app){
 	app.get('/users', users.index);
 	app.post('/users', users.login);
 	app.post('/buckets', buckets.create);
-	app.get('/buckets/:id', buckets.getList);
-	app.put('/buckets/:userid', buckets.update);
+	app.get('/buckets', buckets.index);
+	app.put('/buckets/:itemid', buckets.update);
 }

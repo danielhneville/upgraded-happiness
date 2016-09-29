@@ -4,6 +4,8 @@
 
 <h1>{{ profile.name }}'s Bucket List</h1>
 
+<p ng-repeat="error in errors">{{ error }}</p>
+
 <h3>Done</h3>
 <p ng-repeat="item in bucketList | filter:uC.done">
 	<input type="checkbox" ng-checked="item.complete" ng-disabled="profile._id != user._id">

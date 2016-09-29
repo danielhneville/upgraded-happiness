@@ -17,7 +17,14 @@ app.controller('userController', function($scope, $location, $routeParams, userF
 	})
 
 	bucketFactory.index(false, function(bucketList){
-		$scope.bucketList = bucketList;
+		if (bucketList.errors){
+			$scope.errors = [];
+			for (key in bucketList.errors){
+				$scope.errors.push(bucketList.errors[key].message);
+			}
+		} else {
+			$scope.bucketList = bucketList;
+		}
 	})
 
 	this.done = function(item){
